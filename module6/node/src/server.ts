@@ -1,4 +1,5 @@
 import { createServer, IncomingMessage, Server, ServerResponse } from 'http';
+import routeHandler from './routes/route.ts';
 
 const server: Server = createServer((req: IncomingMessage, res: ServerResponse) => {
     // console.log("Request", req);
@@ -9,27 +10,7 @@ const server: Server = createServer((req: IncomingMessage, res: ServerResponse) 
     console.log(req.method);
 
 
-    const url = req.url;
-
-    const method = req.method;
-
-    if (url === "/" && method === "GET") {
-        console.log("This is root route");
-        res.writeHead(200, { "Content-Type": "application/json" })
-        res.end(JSON.stringify({ message: "This is route endPoint" }))
-    }
-
-
-    else if (url?.startsWith("/products") && method === "GET") {
-        res.writeHead(200, { "Content-Type": "application/json" })
-        res.end(JSON.stringify({ message: "This is Product endPoint" }))
-    }
-
-    else {
-        res.writeHead(200, { "Content-Type": "application/json" })
-        res.end(JSON.stringify({ message: "This is route is not a valid endpoint" }))
-    }
-
+    routeHandler(req, res);
 
 });
 
