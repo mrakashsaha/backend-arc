@@ -13,7 +13,7 @@ const routeHandler = (req: IncomingMessage, res: ServerResponse) => {
     }
 
 
-    else if (url?.startsWith("/products") && method === "GET") {
+    else if (url?.startsWith("/products")) {
         productController(req, res);
     }
 

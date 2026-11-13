@@ -6,10 +6,6 @@ const server: Server = createServer((req: IncomingMessage, res: ServerResponse) 
 
     // console.log("Response:", res);
 
-    console.log(req.url);
-    console.log(req.method);
-
-
     routeHandler(req, res);
 
 });
