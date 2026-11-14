@@ -2,6 +2,7 @@ import { IncomingMessage, ServerResponse } from "http";
 import { IProduct } from "../types/product.ts";
 import { bodyParser } from '../utils/parseBody';
 import { createProduct, productService } from "../service/product.service.ts";
+import { sendResponse } from "../utils/sendResponse.ts";
 
 const productController = async (req: IncomingMessage, res: ServerResponse) => {
 
@@ -12,13 +13,17 @@ const productController = async (req: IncomingMessage, res: ServerResponse) => {
 
     const urlParams = url?.split("/");
 
-    const id = urlParams && urlParams[1] === "products" ? Number(urlParams[2]) : null;
-
+    const id = urlParams && urlParams[1] === "products" && (urlParams[2]) !== undefined ? Number(urlParams[2]) : null;
 
     // Get all products
     if (method === "GET" && id === null) {
-        res.writeHead(200, { "Content-Type": "application/json" })
-        res.end(JSON.stringify({ message: "Product Retrived", data: products }))
+        console.log("here it is start")
+        try {
+            sendResponse(res, true, 200, "All Product Retrived", products);
+        }
+        catch (error) {
+            sendResponse(res, false, 500, "Not showing any product ERROR")
+        }
     }
 
     // Get a signle products
@@ -28,14 +33,15 @@ const productController = async (req: IncomingMessage, res: ServerResponse) => {
         const product = products.find((p: IProduct) => p.id === id);
 
         if (!product) {
-            res.writeHead(200, { "Content-Type": "application/json" })
-            res.end(JSON.stringify({ message: "Product Not Found" }))
+
+            sendResponse(res, false, 404, "Product Not Found");
+
         }
 
 
         else {
-            res.writeHead(200, { "Content-Type": "application/json" })
-            res.end(JSON.stringify({ message: "Product Retrived", data: product }))
+            sendResponse(res, true, 200, "Product Retrive", product);
+
         }
     }
 
@@ -52,8 +58,8 @@ const productController = async (req: IncomingMessage, res: ServerResponse) => {
 
         createProduct(products);
 
-        res.writeHead(201, { "Content-Type": "applicatin/json" })
-        res.end(JSON.stringify({ message: "posted sucessfully", data: newProduct }))
+        sendResponse(res, true, 201, "Posted Sucessfully", newProduct);
+
     }
 
 
@@ -64,8 +70,9 @@ const productController = async (req: IncomingMessage, res: ServerResponse) => {
         const index = products.findIndex((p: IProduct) => p.id === id);
 
         if (index < 0) {
-            res.writeHead(404, { "Content-Type": "applicatin/json" })
-            res.end(JSON.stringify({ message: "Product Not found" }))
+
+            sendResponse(res, false, 404, "Product Not Found");
+
         }
 
         else {
@@ -73,8 +80,8 @@ const productController = async (req: IncomingMessage, res: ServerResponse) => {
             products[index] = { id: products[index].id, ...body }
             createProduct(products);
 
-            res.writeHead(200, { "Content-Type": "applicatin/json" })
-            res.end(JSON.stringify({ message: "Product Updated Sucessfully", data: products[index] }))
+            sendResponse(res, true, 200, "Product Update Sucessfully", products[index]);
+
         }
 
 
@@ -87,8 +94,8 @@ const productController = async (req: IncomingMessage, res: ServerResponse) => {
         const index = products.findIndex((p: IProduct) => p.id === id)
 
         if (index < 0) {
-            res.writeHead(404, { "Content-Type": "applicatin/json" })
-            res.end(JSON.stringify({ message: "Product Not found" }))
+
+            sendResponse(res, false, 404, "Product Note Found to Delete");
         }
 
         else {
@@ -96,8 +103,8 @@ const productController = async (req: IncomingMessage, res: ServerResponse) => {
             products.splice(index, 1);
             createProduct(products);
 
-            res.writeHead(200, { "Content-Type": "applicatin/json" })
-            res.end(JSON.stringify({ message: "Product Deleted Sucessfully" }))
+            sendResponse(res, true, 200, "Product Deleted Sucessfully")
+
         }
 
     }
