@@ -1,9 +1,10 @@
-import { readFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
+import { IProduct } from "../types/product.ts";
 
 const filePath = path.join(process.cwd(), "./src/database/db.json")
 
-const productService = () => {
+export const productService = () => {
     // console.log(process.cwd());
     // console.log(filePath);
     const result = readFileSync(filePath, "utf-8");
@@ -11,4 +12,6 @@ const productService = () => {
     return JSON.parse(result);
 }
 
-export default productService;
+export const createProduct = (payload: IProduct[]) => {
+    writeFileSync(filePath, JSON.stringify(payload));
+}
