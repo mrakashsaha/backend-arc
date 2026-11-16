@@ -43,7 +43,7 @@ app.get("/", (req: Request, res: Response) => {
     res.status(200).json({ sucess: true, author: "Ex-Server", message: "I am route route" })
 })
 
-
+// Post a single user
 app.post("/api/v1/users", async (req: Request, res: Response) => {
 
     try {
@@ -63,6 +63,46 @@ app.post("/api/v1/users", async (req: Request, res: Response) => {
     }
 
 })
+
+// get all users
+app.get("/api/v1/users", async (req: Request, res: Response) => {
+
+    try {
+        const result = await pool.query(`
+            SELECT * FROM users;
+            `)
+
+        console.log(result.rows);
+        res.status(200).json({ success: true, message: "Users Retrived Sucessfully", data: result.rows });
+
+
+    } catch (error: any) {
+        res.status(500).json({ success: false, message: error.message, error: error });
+    }
+})
+
+
+// Get a users
+app.get("/api/v1/users/:id", async (req: Request, res: Response) => {
+    try {
+
+        const {id} = req.params;
+
+        const result = await pool.query(`
+            SELECT * FROM users WHERE id = $1
+            `, [id])
+
+        console.log(result);
+
+        res.status(200).json({ success: true, message: "User Retrived Sucessfully", data: result.rows[0]});
+
+
+    } catch (error: any) {
+
+        res.status(500).json({ success: false, message: error.message, error: error });
+    }
+})
+
 
 app.listen(port, () => {
     console.log("Express server is listening on port", port);
