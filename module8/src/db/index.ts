@@ -1,0 +1,29 @@
+
+import { Pool } from "pg";
+import config from "../config/index.js";
+
+export const pool = new Pool({ connectionString: config.connectionString});
+
+export const initDB = async () => {
+    try {
+
+        await pool.query(`
+        CREATE TABLE IF NOT EXISTS users (
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(255),
+        email VARCHAR(255) UNIQUE NOT NULL,
+        password VARCHAR(255) NOT NULL,
+        age INT,
+        is_Active BOOLEAN DEFAULT true,
+        createdAt TIMESTAMP DEFAULT NOW(),
+        updatedAt TIMESTAMP DEFAULT NOW());
+        `)
+        console.log("Sucessfully Concected with PGDB")
+
+    }
+
+    catch (error) {
+        console.log(error);
+    }
+}
+
