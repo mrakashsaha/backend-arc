@@ -1,28 +1,23 @@
-import { Router, type Request, type Response } from "express";
-import { pool } from "../../db/index.js";
+import { Router} from "express";
 import { userContoller } from "./user.controller.js";
 
 const router = Router();
 
-// EndPoints: /api/v1/users/ ==> Post a User
+// EndPoints: /api/v1/users/ ====
+
+//Post a User
 router.post("/", userContoller.createUser);
 
-// EndPoints: /api/v1/users/ ==> Get all users
-router.get("/", async (req: Request, res: Response) => {
+//Get all users
+router.get("/", userContoller.getAllUsers)
 
-    try {
-        const result = await pool.query(`
-            SELECT * FROM users;
-            `)
+//Get A user
+router.get("/:id", userContoller.getSingleUser)
 
-        res.status(200).json({ success: true, message: "Users Retrived Sucessfully", data: result.rows });
+// Update a user
+router.put("/:id", userContoller.updateUser)
 
-
-    } catch (error: any) {
-        res.status(500).json({ success: false, message: error.message, error: error });
-    }
-})
-
-
+//Delete a User
+router.delete("/:id", userContoller.deleteUser)
 
 export const userRoute = router;
