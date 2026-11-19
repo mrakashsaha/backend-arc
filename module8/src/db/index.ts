@@ -2,7 +2,7 @@
 import { Pool } from "pg";
 import config from "../config/index.js";
 
-export const pool = new Pool({ connectionString: config.connectionString});
+export const pool = new Pool({ connectionString: config.connectionString });
 
 export const initDB = async () => {
     try {
@@ -19,6 +19,21 @@ export const initDB = async () => {
         updatedAt TIMESTAMP DEFAULT NOW());
         `)
         console.log("Sucessfully Concected with PGDB")
+
+
+        await pool.query(`
+        CREATE TABLE IF NOT EXISTS profile(
+            id SERIAL PRIMARY KEY,
+            user_id INT UNIQUE REFERENCES users (id) ON DELETE CASCADE,
+            bio TEXT,
+            address TEXT,
+            phone VARCHAR (15),
+            gender VARCHAR (10),
+            createdAt TIMESTAMP DEFAULT NOW(),
+            updatedAt TIMESTAMP DEFAULT NOW()
+        );  
+        
+        `)
 
     }
 
