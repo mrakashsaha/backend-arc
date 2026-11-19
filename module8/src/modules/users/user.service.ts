@@ -1,15 +1,19 @@
 import type { Request } from "express";
 import { pool } from "../../db/index.js";
 import type { IUpdateUser, IUser } from "./user.interface.js";
+import bcrypt from "bcryptjs";
 
 const createUserIntoDB = async (payLoad: IUser) => {
     const { name, email, password, age } = payLoad;
 
+    const hashPassword = await bcrypt.hash(password, 10);
+
     const result = await pool.query(`
         INSERT INTO users (name, email, password, age)
-        VALUES ($1, $2, $3, $4) RETURNING *
-        `, [name, email, password, age]);
+        VALUES ($1, $2, $3, $4) RETURNING *;
+        `, [name, email, hashPassword, age]);
 
+    delete result.rows[0].password; //delete password by a method of javascript
     return result;
 }
 
@@ -46,7 +50,7 @@ const updateUserFromDB = async (id: string, payload: IUpdateUser) => {
 }
 
 const deleteUserFromDB = async (id: string) => {
-    const result = await  pool.query(`
+    const result = await pool.query(`
         
         DELETE FROM users
         WHERE id = $1
