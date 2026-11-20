@@ -1,6 +1,7 @@
 import express, { type Application, type Request, type Response } from "express";
 import { userRoute } from "./modules/users/user.route.js";
 import { profileRoute } from "./modules/profile/profile.route.js";
+import { authRoute } from "./modules/auth/auth.route.js";
 
 const app: Application = express();
 
@@ -19,5 +20,7 @@ app.use("/api/v1/users", userRoute);
 
 // Prfoile Route
 app.use("/api/v1/profile", profileRoute);
+
+app.use("/api/v1/auth", authRoute);
 
 export default app;
