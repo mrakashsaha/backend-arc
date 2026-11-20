@@ -1,0 +1,36 @@
+
+Method: GET | URL /api/v1/users | Time: 1795204543408
+
+Method: GET | URL / | Time: 1795204549824
+
+Method: GET | URL /api/v1/users/3 | Time: 1795204654487
+
+Method: GET | URL /api/v1/users/3 | Time: 1795204700518
+
+Method: GET | URL /api/v1/users/3 | Time: 1795204833665
+
+Method: GET | URL /api/v1/users/3 | Time: 1795205051634
+
+Method: GET | URL /api/v1/users/3 | Time: 1795205054092
+
+Method: GET | URL /api/v1/users/3 | Time: 1795205169803
+
+Method: GET | URL /api/v1/users/3 | Time: 1795205180840
+
+Method: GET | URL /api/v1/users/3 | Time: 1795205183619
+
+Method: GET | URL /api/v1/users/3 | Time: 1795205194454
+
+Method: GET | URL /api/v1/users/3 | Time: 1795205239256
+
+Method: GET | URL /api/v1/users/ | Time: 1795205248433
+
+Method: GET | URL /api/v1/users/ | Time: 1795205262766
+
+Method: GET | URL /api/v1/users/3 | Time: 1795205522968
+
+Method: GET | URL /api/v1/users/3 | Time: 1795205564321
+
+Method: GET | URL /api/v1/users/3 | Time: 1795205575779
+
+Method: GET | URL /api/v1/users/3 | Time: 1795205579432
