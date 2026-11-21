@@ -122,3 +122,27 @@ Method: GET | URL /api/v1/users | Time: 1795250895047
 Method: GET | URL /api/v1/users | Time: 1795250944275
 
 Method: GET | URL /api/v1/users | Time: 1795250970229
+
+Method: GET | URL /api/v1/users | Time: 1795251685320
+
+Method: PUT | URL /api/v1/users/22 | Time: 1795251700861
+
+Method: GET | URL /api/v1/users | Time: 1795251706666
+
+Method: GET | URL /api/v1/users | Time: 1795251871775
+
+Method: POST | URL /api/v1/auth/login | Time: 1795251954755
+
+Method: GET | URL /api/v1/users | Time: 1795251986786
+
+Method: GET | URL /api/v1/users | Time: 1795252029547
+
+Method: GET | URL /api/v1/users | Time: 1795252034785
+
+Method: GET | URL /api/v1/users | Time: 1795252086756
+
+Method: GET | URL /api/v1/users | Time: 1795252185052
+
+Method: GET | URL /api/v1/users | Time: 1795252411450
+
+Method: GET | URL /api/v1/users | Time: 1795252550451

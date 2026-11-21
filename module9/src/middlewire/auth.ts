@@ -34,6 +34,8 @@ const auth = async (req: Request, res: Response, next: NextFunction) => {
             res.status(403).json({ success: false, message: "User is blocked" })
             return;
         }
+
+        req.user = decode;
         next();
 
     } 
