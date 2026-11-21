@@ -34,3 +34,91 @@ Method: GET | URL /api/v1/users/3 | Time: 1795205564321
 Method: GET | URL /api/v1/users/3 | Time: 1795205575779
 
 Method: GET | URL /api/v1/users/3 | Time: 1795205579432
+
+Method: GET | URL / | Time: 1795237274138
+
+Method: GET | URL /api/v1/profile | Time: 1795237280289
+
+Method: GET | URL /api/v1/profiles | Time: 1795237283581
+
+Method: GET | URL /api/v1/profile/1 | Time: 1795237289686
+
+Method: GET | URL /api/v1/profile/1 | Time: 1795238232683
+
+Method: GET | URL /api/v1/users | Time: 1795238284242
+
+Method: GET | URL /favicon.ico | Time: 1795238284434
+
+Method: GET | URL /api/v1/users | Time: 1795246426139
+
+Method: GET | URL /api/v1/users | Time: 1795246563188
+
+Method: POST | URL /api/v1/auth/login | Time: 1795247119779
+
+Method: GET | URL /api/v1/users | Time: 1795247153478
+
+Method: GET | URL /api/v1/users | Time: 1795247195068
+
+Method: GET | URL /api/v1/users | Time: 1795247205588
+
+Method: GET | URL /api/v1/users | Time: 1795247260923
+
+Method: GET | URL /api/v1/users | Time: 1795247285308
+
+Method: GET | URL /api/v1/users | Time: 1795247309510
+
+Method: GET | URL /api/v1/users | Time: 1795247315916
+
+Method: GET | URL /api/v1/users | Time: 1795248469661
+
+Method: GET | URL /api/v1/users | Time: 1795248475876
+
+Method: GET | URL /api/v1/users | Time: 1795248481266
+
+Method: GET | URL /api/v1/users | Time: 1795248488871
+
+Method: GET | URL /api/v1/users | Time: 1795248498371
+
+Method: GET | URL /api/v1/users | Time: 1795249064522
+
+Method: GET | URL /api/v1/users | Time: 1795249612600
+
+Method: GET | URL /api/v1/users | Time: 1795250183912
+
+Method: GET | URL /api/v1/users | Time: 1795250196193
+
+Method: PUT | URL /api/v1/users/22 | Time: 1795250213043
+
+Method: GET | URL /api/v1/users | Time: 1795250235851
+
+Method: PUT | URL /api/v1/users/22 | Time: 1795250249513
+
+Method: GET | URL /api/v1/users | Time: 1795250257738
+
+Method: GET | URL /api/v1/users | Time: 1795250305494
+
+Method: PUT | URL /api/v1/users/22 | Time: 1795250350693
+
+Method: POST | URL /api/v1/auth/login | Time: 1795250363523
+
+Method: GET | URL /api/v1/users | Time: 1795250372415
+
+Method: GET | URL /api/v1/users | Time: 1795250466124
+
+Method: PUT | URL /api/v1/users/22 | Time: 1795250474890
+
+Method: PUT | URL /api/v1/users/22 | Time: 1795250481143
+
+Method: GET | URL /api/v1/users | Time: 1795250490279
+
+Method: GET | URL /api/v1/users | Time: 1795250524494
+
+Method: GET | URL /api/v1/users | Time: 1795250826305
+
+Method: GET | URL /api/v1/users | Time: 1795250873338
+
+Method: GET | URL /api/v1/users | Time: 1795250895047
+
+Method: GET | URL /api/v1/users | Time: 1795250944275
+
+Method: GET | URL /api/v1/users | Time: 1795250970229

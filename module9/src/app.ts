@@ -3,24 +3,18 @@ import { userRoute } from "./modules/users/user.route.js";
 import { profileRoute } from "./modules/profile/profile.route.js";
 import { authRoute } from "./modules/auth/auth.route.js";
 import fs from "fs";
+import logger from "./middlewire/logger.js";
 
 const app: Application = express();
+
 
 
 app.use(express.json());
 app.use(express.text());
 app.use(express.urlencoded({ extended: true }));
 
-app.use ((req: Request, res: Response, next)=> {
-    // console.log("Time->Method->URL", Date.now(), req.method, req.url);
-
-    const log = `\nMethod: ${req.method} | URL ${req.url} | Time: ${Date.now()}\n`;
-    
-    fs.appendFile("logger.txt", log, (err)=> {
-        err && console.log(err)
-    })
-    next();
-})
+// Custom middlewire creating logger.txt file
+app.use (logger);
 
 
 app.get("/", (req: Request, res: Response) => {
