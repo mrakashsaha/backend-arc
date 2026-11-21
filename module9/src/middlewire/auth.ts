@@ -3,7 +3,11 @@ import jwt, { type Jwt, type JwtPayload } from "jsonwebtoken"
 import config from "../config/index.js";
 import { pool } from "../db/index.js";
 
-const auth = async (req: Request, res: Response, next: NextFunction) => {
+const auth = (...roles: string[]) => {
+
+    console.log(roles);
+
+    return async (req: Request, res: Response, next: NextFunction) => {
     // For Protected Route:
     // 1- Check the token exists
     // 2- Verfify token
@@ -38,6 +42,7 @@ const auth = async (req: Request, res: Response, next: NextFunction) => {
         req.user = decode;
         next();
 
+
     } 
     
     catch (error: any) {
@@ -45,6 +50,7 @@ const auth = async (req: Request, res: Response, next: NextFunction) => {
     }
 
 
+}
 }
 
 export default auth;

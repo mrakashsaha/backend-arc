@@ -4,14 +4,14 @@ import type { IUpdateUser, IUser } from "./user.interface.js";
 import bcrypt from "bcryptjs";
 
 const createUserIntoDB = async (payLoad: IUser) => {
-    const { name, email, password, age } = payLoad;
+    const { name, email, password, age, role } = payLoad;
 
     const hashPassword = await bcrypt.hash(password, 10);
 
     const result = await pool.query(`
-        INSERT INTO users (name, email, password, age)
-        VALUES ($1, $2, $3, $4) RETURNING *;
-        `, [name, email, hashPassword, age]);
+        INSERT INTO users (name, email, password, age, role)
+        VALUES ($1, $2, $3, $4, COALESCE($5, 'user')) RETURNING *;
+        `, [name, email, hashPassword, age, role]);
 
     delete result.rows[0].password; //delete password by a method of javascript
     return result;

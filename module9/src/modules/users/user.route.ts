@@ -10,7 +10,7 @@ const router = Router();
 router.post("/", userContoller.createUser);
 
 //Get all users
-router.get("/", auth, userContoller.getAllUsers)
+router.get("/", auth ("admin", "agent"), userContoller.getAllUsers)
 
 //Get A user
 router.get("/:id", userContoller.getSingleUser)
