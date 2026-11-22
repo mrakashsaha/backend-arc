@@ -6,6 +6,7 @@ import fs from "fs";
 import logger from "./middlewire/logger.js";
 import globalErrorHandeler from "./middlewire/globalErrorHandler.js";
 import cors from "cors";
+import cookieParser from "cookie-parser"
 
 const app: Application = express();
 
@@ -16,6 +17,7 @@ const corsOption = {
 
 app.use(cors(corsOption));
 
+app.use(cookieParser());
 
 app.use(express.json());
 app.use(express.text());
