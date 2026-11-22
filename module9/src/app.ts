@@ -4,6 +4,7 @@ import { profileRoute } from "./modules/profile/profile.route.js";
 import { authRoute } from "./modules/auth/auth.route.js";
 import fs from "fs";
 import logger from "./middlewire/logger.js";
+import globalErrorHandeler from "./middlewire/globalErrorHandler.js";
 
 const app: Application = express();
 
@@ -28,5 +29,7 @@ app.use("/api/v1/users", userRoute);
 app.use("/api/v1/profile", profileRoute);
 
 app.use("/api/v1/auth", authRoute);
+
+app.use(globalErrorHandeler);
 
 export default app;
