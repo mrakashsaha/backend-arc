@@ -1,9 +1,22 @@
 import type { Request, Response } from "express";
 import { authService } from "./auth.service.js";
+import { strict } from "assert";
 
 const loginUser = async (req: Request, res: Response) => {
     try {
         const result = await authService.loginUserIntoDB(req.body);
+
+        const {refreshToken} =  result;
+
+        res.cookie("refreshToken", refreshToken, {
+            secure: false, //http--> false, https->true
+            httpOnly: true, //prevent xss attach
+            sameSite: "lax", //none, strict, lax  ->CSRFattach prevent
+            // maxAge
+            path: "/",
+            domain: "localhost" //example.ocm for acctual site
+
+        })
 
         res.status(200).json({success: true, message: "Access token created successfully", data: result});
         
