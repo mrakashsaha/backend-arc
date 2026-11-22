@@ -1,6 +1,7 @@
 import type { Request, Response } from "express";
 import { authService } from "./auth.service.js";
 import { strict } from "assert";
+import sendResponse from "../../utils/sendResponse.js";
 
 const loginUser = async (req: Request, res: Response) => {
     try {
@@ -18,13 +19,11 @@ const loginUser = async (req: Request, res: Response) => {
 
         })
 
-        res.status(200).json({ success: true, message: "Access token created successfully", data: result });
-
-
+        sendResponse(res,{ statusCode: 200, success: true, data: result, message: "Access token created successfully",})
 
     }
     catch (error: any) {
-        res.status(500).json({ success: false, message: error.message, error: error })
+        sendResponse (res, {statusCode: 500, message: error.message, success: false, error: error})
     }
 }
 const generateToken = async (req: Request, res: Response) => {
