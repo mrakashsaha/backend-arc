@@ -5,9 +5,16 @@ import { authRoute } from "./modules/auth/auth.route.js";
 import fs from "fs";
 import logger from "./middlewire/logger.js";
 import globalErrorHandeler from "./middlewire/globalErrorHandler.js";
+import cors from "cors";
 
 const app: Application = express();
 
+const corsOption = {
+    origin: ["http://localhost:3000"],
+    optionsSuccessStatus: 200
+}
+
+app.use(cors(corsOption));
 
 
 app.use(express.json());
@@ -15,7 +22,7 @@ app.use(express.text());
 app.use(express.urlencoded({ extended: true }));
 
 // Custom middlewire creating logger.txt file
-app.use (logger);
+app.use(logger);
 
 
 app.get("/", (req: Request, res: Response) => {
