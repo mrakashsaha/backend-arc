@@ -1,19 +1,27 @@
 import app from "./app.js";
+import { pool } from "./config/db.js";
+import config from "./config/index.js";
+import { initDatabase } from "./config/initDB.js";
 
-const port: number = Number(process.env.PORT) || 5000;
-
-const startServer = () => {
+const startServer = async () => {
 
     try {
-        app.listen(port, () => {
-            console.log("Libary Management server is running on PORT = ", port);
+
+        const time = await pool.query(`SELECT NOW()`);
+
+        console.log("Database connected! Current Time: ", time.rows[0].now);
+
+        initDatabase();
+
+        app.listen(config.port, () => {
+            console.log("Libary Management server is running on PORT =", config.port);
         })
 
     } 
     
     catch (error) {
         console.error("Failed to connect to server. Details: ", error);
-        
+
     }
 }
 
